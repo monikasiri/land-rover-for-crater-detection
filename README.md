@@ -1,41 +1,50 @@
 ### **Project Summary**
 ---
-A solar-powered autonomous rover that uses a CNN model to detect craters in real-time and makes movement decisions using IoT communication. The system is designed for remote terrains like space or disaster areas.
+This project is about building a solar-powered land rover that detects craters in real-time using a CNN-based deep learning model. The camera captures images and the model predicts whether the surface is crater or not. The rover's behavior is determined based on this prediction. Fing is used for IP scanning to access the web interface.
 
 ### **Abstract**
 ---
-This project combines deep learning, IoT, and renewable energy to create a smart rover capable of environmental awareness. The CNN model classifies camera input as crater or non-crater. Based on the result, the rover stops or moves using commands sent via IoT to an Arduino-based control system.
+A Raspberry Pi-based rover runs a CNN model to detect crater from live camera input. Upon detection, a decision is made to move or stop. A Flask-based web app allows users to upload images and receive predictions. Fing helps locate the Raspberry Pi's IP for access.
 
 ### **Introduction**
 ---
-Navigating unknown terrain requires real-time hazard detection. This system uses a Raspberry Pi for image processing, a CNN for crater classification, and Arduino for motor control. IoT connectivity allows real-time human monitoring.
+The rover uses a webcam and Raspberry Pi to detect dusty surfaces. The model is pre-trained and loaded during runtime. If the uploaded or live-captured image is dusty, the prediction is shown with confidence. A local Flask app provides an interface for image upload and result display.
 
 ### **Hardware Used**
 ---
-- 200RPM 12Volts DC Motor
-- L298 2A Dual Motor Driver Module With PWM Control
-- Zebronics Zeb-Crystal Pro Web Camera with USB Powered, 3P Lens
-- Lead Acid Battery
-- Power Bank for Raspberry Pi
-- Solar Charge Controller
+- 200RPM 12Volts DC Motor  
+- L298 2A Dual Motor Driver Module With PWM Control  
+- Zebronics Zeb-Crystal Pro Web Camera with USB Powered, 3P Lens  
+- Lead Acid Battery  
+- Power Bank for Raspberry Pi  
+- Solar Charge Controller  
 - Raspberry Pi 4
 
 ### **Software Used**
 ---
-- Fing (Network device discovery and IP scanning)
+- Fing (Network device discovery)
+
+### **Python Libraries Used**
+---
+- Python 3.x  
+- TensorFlow  
+- OpenCV  
+- Flask  
+- NumPy  
+- PIL  
+- os, time, webbrowser
 
 ### **Algorithm Used**
 ---
-- CNN with convolution, pooling, flatten, dense, and sigmoid layers
-- Binary classification: crater vs. non-crater
-- Input image: 64x64 RGB
-- Output: 0 (non-crater) or 1 (crater)
+- CNN model processes 128x128 RGB images  
+- Outputs prediction with confidence score  
+- Trained using Adam optimizer and cross-entropy loss
 
 ### **How It Works**
 ---
-1. Raspberry Pi captures image from camera
-2. Image is resized, normalized, and fed to CNN
-3. CNN outputs prediction
-4. If crater → send 'STOP' command to Arduino via IoT
-5. If non-crater → send 'FORWARD' command
-6. Arduino executes motor control based on received signal
+1. Camera captures frame or user uploads an image.  
+2. Image is resized to 128x128 and normalized.  
+3. CNN model loads using TensorFlow and restores saved graph.  
+4. Image passed to model, which predicts "dust" or "non-dust".  
+5. Output displayed via Flask web interface.  
+6. Fing is used to find the Raspberry Pi's IP for web access.
