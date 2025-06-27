@@ -8,7 +8,7 @@ A Raspberry Pi-based rover runs a CNN model to detect crater from live camera in
 
 ### **Introduction**
 ---
-The rover uses a webcam and Raspberry Pi to detect dusty surfaces. The model is pre-trained and loaded during runtime. If the uploaded or live-captured image is dusty, the prediction is shown with confidence. A local Flask app provides an interface for image upload and result display.
+The rover uses a webcam and Raspberry Pi to detect dusty surfaces. The model is pre-trained and loaded during runtime. If the uploaded or live-captured image is dusty, the prediction is shown with confidence. A local Flask app provides an interface for image upload and result display.(dusty-crater present,non-dusty-crater is not present)
 
 ### **Hardware Used**
 ---
